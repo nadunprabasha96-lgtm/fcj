@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | DSD QUIZ WEB</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght=400;500;600;700;800&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-slate-950 via-indigo-950 to-slate-950 text-white min-h-screen flex flex-col justify-between relative overflow-x-hidden">
+
+    <nav class="w-full px-6 md:px-12 py-4 flex justify-between items-center border-b border-indigo-900/30 bg-slate-950/40 backdrop-blur-md z-30 sticky top-0">
+        <div class="flex items-center space-x-2">
+            <span class="text-2xl" aria-hidden="true">🎓</span>
+            <span class="text-xl font-bold tracking-wider bg-gradient-to-r from-indigo-400 to-cyan-400 bg-clip-text text-transparent">DSD QUIZ MASTER</span>
+        </div>
+        
+        <div class="flex items-center space-x-6">
+            <div class="hidden sm:flex items-center space-x-2 bg-amber-500/10 border border-amber-500/30 px-3 py-1 rounded-full text-amber-400 text-xs font-semibold">
+                <span id="nav-rank">🏆 Rank: --</span>
+            </div>
+            <div class="flex items-center space-x-2 bg-indigo-500/10 border border-indigo-500/30 px-3 py-1 rounded-full text-indigo-400 text-xs font-semibold">
+                <span id="nav-xp">✨ -- XP</span>
+            </div>
+            
+            <div class="flex items-center space-x-3 border-l border-slate-800 pl-4 relative">
+                <button id="profile-btn" class="flex items-center space-x-3 focus:outline-none group">
+                    <div class="w-9 h-9 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full flex items-center justify-center text-sm font-bold text-white shadow-md group-hover:scale-105 transition-transform">
+                        පම
+                    </div>
+                    <span class="text-sm font-medium hidden md:block text-gray-300 group-hover:text-white transition flex items-center">
+                        පසිඳු මධුශංඛ
+                        <svg class="w-4 h-4 ml-1 text-gray-500 group-hover:text-white transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </span>
+                </button>
+
+                <div id="user-dropdown" class="hidden absolute right-0 top-full mt-2 w-48 bg-slate-900 border border-indigo-500/20 rounded-xl shadow-xl z-50 overflow-hidden backdrop-blur-md">
+                    <div class="px-4 py-2.5 border-b border-slate-800 md:hidden">
+                        <p class="text-xs text-gray-500">Logged in as</p>
+                        <p class="text-sm font-medium text-gray-200 truncate">පසිඳු මධුශංඛ</p>
+                    </div>
+                    <a href="logout.php" class="flex items-center space-x-2 px-4 py-3 text-sm text-rose-400 hover:bg-rose-500/10 hover:text-rose-300 transition-colors w-full text-left">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+                        </svg>
+                        <span>Log Out</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="w-full max-w-7xl mx-auto flex-grow px-6 md:px-12 py-8 z-20 relative space-y-8">
+        
+        <div class="w-full bg-gradient-to-r from-indigo-900/40 via-purple-950/30 to-slate-900/50 p-6 md:p-8 rounded-3xl border border-indigo-500/20 backdrop-blur-sm flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+            <div>
+                <h1 class="text-2xl md:text-3xl font-extrabold tracking-tight">ආයුබෝවන්, <span class="bg-gradient-to-r from-amber-400 to-orange-400 bg-clip-text text-transparent">පසිඳු මධුශංඛ</span> 👋</h1>
+                <p class="text-sm text-gray-400 mt-1">ඔබගේ 2026 A/L සිහිනය ජය ගැනීමට අදම ප්‍රශ්න පත්‍රයකට මුහුණ දී සූදානම පරීක්ෂා කරන්න.</p>
+            </div>
+            <div class="bg-slate-950/50 px-5 py-3 rounded-2xl border border-slate-800 flex items-center space-x-4 w-full md:w-auto">
+                <div class="text-center">
+                    <span class="block text-xl font-bold text-emerald-400">12</span>
+                    <span class="text-[10px] text-gray-500 uppercase tracking-wider">Completed</span>
+                </div>
+                <div class="h-8 w-[1px] bg-slate-800"></div>
+                <div class="text-center">
+                    <span class="block text-xl font-bold text-amber-400">85%</span>
+                    <span class="text-[10px] text-gray-500 uppercase tracking-wider">Avg Accuracy</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            
+            <div class="lg:col-span-8 space-y-8">
+                <div>
+                    <h2 class="text-xl font-bold tracking-wide flex items-center space-x-2">
+                        <span aria-hidden="true">📚</span>
+                        <span>විෂයයන් තෝරාගන්න (Select Subject)</span>
+                    </h2>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div class="bg-slate-900/60 border border-slate-800 hover:border-indigo-500/40 transition-all duration-300 p-6 rounded-2xl shadow-xl backdrop-blur-md flex flex-col justify-between group">
+                        <div>
+                            <div class="flex justify-between items-start mb-4">
+                                <div class="w-12 h-12 bg-amber-500/10 rounded-xl flex items-center justify-center text-3xl text-amber-400" aria-hidden="true">⚡</div>
+                                <span class="text-xs bg-indigo-500/10 text-indigo-400 px-2.5 py-1 rounded-full font-medium">15 Quizzes</span>
+                            </div>
+                            <h3 class="font-bold text-xl text-gray-100 group-hover:text-indigo-400 transition">Physics MCQ Practice</h3>
+                            <p class="text-xs text-gray-400 mt-1 leading-relaxed">මිනුම, යාන්ත්‍ර විද්‍යාව, තරංග, ආලෝකය, තාපය, ක්ෂේත්‍ර සහ ඉලෙක්ට්‍රොනික විද්‍යාව ඇතුළු සියලුම ඒකක 15ම.</p>
+                        </div>
+                        <button id="physics-arena-btn" class="mt-6 w-full bg-indigo-600/20 hover:bg-indigo-600 border border-indigo-500/30 hover:border-indigo-500 py-3 rounded-xl font-semibold text-sm transition text-indigo-300 hover:text-white">
+                            Enter Physics Arena ➔
+                        </button>
+                    </div>
+
+                    <div class="bg-slate-900/60 border border-slate-800 hover:border-teal-500/40 transition-all duration-300 p-6 rounded-2xl shadow-xl backdrop-blur-md flex flex-col justify-between group">
+                        <div>
+                            <div class="flex justify-between items-start mb-4">
+                                <div class="w-12 h-12 bg-teal-500/10 rounded-xl flex items-center justify-center text-3xl text-teal-400" aria-hidden="true">🧪</div>
+                                <span class="text-xs bg-teal-500/10 text-teal-400 px-2.5 py-1 rounded-full font-medium">14 Quizzes</span>
+                            </div>
+                            <h3 class="font-bold text-xl text-gray-100 group-hover:text-teal-400 transition">Chemistry MCQ Practice</h3>
+                            <p class="text-xs text-gray-400 mt-1 leading-relaxed">පරමාණුක ව්‍යුහය, බන්ධන, කාබනික, සමතුලිතතාවය, චාලක රසායනය සහ කර්මාන්ත ඇතුළු සමස්ත ඒකක 14ම.</p>
+                        </div>
+                        <button id="chemistry-arena-btn" class="mt-6 w-full bg-teal-600/20 hover:bg-teal-600 border border-teal-500/30 hover:border-teal-500 py-3 rounded-xl font-semibold text-sm transition text-teal-300 hover:text-white">
+                            Enter Chemistry Arena ➔
+                        </button>
+                    </div>
+                </div>
+
+                <div class="bg-slate-900/30 border border-slate-800/80 p-6 rounded-2xl backdrop-blur-sm">
+                    <h3 class="font-bold text-lg mb-4 flex items-center space-x-2">
+                        <span aria-hidden="true">🕒</span>
+                        <span>අවසාන ක්‍රියාකාරකම් (Recent Quizzes)</span>
+                    </h3>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-sm text-gray-400">
+                            <thead class="bg-slate-950/60 text-gray-300 uppercase text-xs font-semibold">
+                                <tr>
+                                    <th class="p-3 rounded-l-lg">Quiz Name</th>
+                                    <th class="p-3">Subject</th>
+                                    <th class="p-3">Score</th>
+                                    <th class="p-3 rounded-r-lg">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="recent-quizzes-tbody" class="divide-y divide-slate-800/50">
+                                </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lg:col-span-4 space-y-8">
+                <div class="bg-slate-900/50 border border-slate-800 p-6 rounded-2xl backdrop-blur-md">
+                    <h3 class="font-bold text-lg mb-4 flex items-center space-x-2 text-amber-400">
+                        <span aria-hidden="true">🔥</span>
+                        <span>TOP LEADERS (දිවයිනේ ප්‍රමුඛයෝ)</span>
+                    </h3>
+                    <div id="leaderboard-list" class="space-y-3">
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="physics-modal" class="hidden fixed inset-0 w-full h-full bg-slate-950/80 backdrop-blur-sm flex items-center justify-center z-50 px-4">
+        <div class="bg-slate-900 border border-indigo-500/30 w-full max-w-2xl rounded-3xl p-6 md:p-8 shadow-2xl relative space-y-6 max-h-[85vh] overflow-y-auto">
+            <div class="flex justify-between items-center border-b border-slate-800 pb-4 sticky top-0 bg-slate-900 z-10">
+                <div>
+                    <h3 class="text-xl font-bold text-white flex items-center gap-2"><span>⚡</span> Physics MCQ Arena</h3>
+                    <p class="text-xs text-gray-400 mt-1">ආරම්භ කිරීමට අවශ්‍ය ඒකකය/පාඩම (01 - 15) තෝරාගන්න.</p>
+                </div>
+                <button id="close-physics-btn" class="w-8 h-8 bg-slate-800 hover:bg-slate-700 text-gray-400 hover:text-white rounded-full flex items-center justify-center transition">✕</button>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <a href="physics/measurement.php" class="flex items-center justify-between p-3.5 bg-slate-950/40 hover:bg-indigo-600/10 border border-slate-800 hover:border-indigo-500/40 rounded-xl transition group">
+                    <div class="flex items-center space-x-3 truncate"><span class="w-7 h-7 bg-indigo-500/10 text-indigo-400 flex items-center justify-center rounded-lg text-xs font-bold shrink-0">01</span><span class="text-xs font-medium text-gray-200 group-hover:text-white transition truncate">මිනුම (Measurement)</span></div>
+                    <span class="text-[11px] text-indigo-400 shrink-0 ml-2">➔</span>
+                </a>
+                <a href="physics/mechanics.php" class="flex items-center justify-between p-3.5 bg-slate-950/40 hover:bg-indigo-600/10 border border-slate-800 hover:border-indigo-500/40 rounded-xl transition group">
+                    <div class="flex items-center space-x-3 truncate"><span class="w-7 h-7 bg-indigo-500/10 text-indigo-400 flex items-center justify-center rounded-lg text-xs font-bold shrink-0">02</span><span class="text-xs font-medium text-gray-200 group-hover:text-white transition truncate">යාන්ත්‍ර විද්‍යාව (Mechanics)</span></div>
+                    <span class="text-[11px] text-indigo-400 shrink-0 ml-2">➔</span>
+                </a>
+                <a href="physics/waves.php" class="flex items-center justify-between p-3.5 bg-slate-950/40 hover:bg-indigo-600/10 border border-slate-800 hover:border-indigo-500/40 rounded-xl transition group">
+                    <div class="flex items-center space-x-3 truncate"><span class="w-7 h-7 bg-indigo-500/10 text-indigo-400 flex items-center justify-center rounded-lg text-xs font-bold shrink-0">03</span><span class="text-xs font-medium text-gray-200 group-hover:text-white transition truncate">දෝලන හා තරංග (Oscillations & Waves)</span></div>
+                    <span class="text-[11px] text-indigo-400 shrink-0 ml-2">➔</span>
+                </a>
+                <a href="physics/light.php" class="flex items-center justify-between p-3.5 bg-slate-950/40 hover:bg-indigo-600/10 border border-slate-800 hover:border-indigo-500/40 rounded-xl transition group">
+                    <div class="flex items-center space-x-3 truncate"><span class="w-7 h-7 bg-indigo-500/10 text-indigo-400 flex items-center justify-center rounded-lg text-xs font-bold shrink-0">04</span><span class="text-xs font-medium text-gray-200 group-hover:text-white transition truncate">ආලෝකය (Light)</span></div>
+                    <span class="text-[11px] text-indigo-400 shrink-0 ml-2">➔</span>
+                </a>
+                <a href="physics/heat.php" class="flex items-center justify-between p-3.5 bg-slate-950/40 hover:bg-indigo-600/10 border border-slate-800 hover:border-indigo-500/40 rounded-xl transition group">
+                    <div class="flex items-center space-x-3 truncate"><span class="w-7 h-7 bg-indigo-500/10 text-indigo-400 flex items-center justify-center rounded-lg text-xs font-bold shrink-0">05</span><span class="text-xs font-medium text-gray-200 group-hover:text-white transition truncate">තාපය (Heat)</span></div>
+                    <span class="text-[11px] text-indigo-400 shrink-0 ml-2">➔</span>
+                </a>
+                <a href="physics/gravitational.php" class="flex items-center justify-between p-3.5 bg-slate-950/40 hover:bg-indigo-600/10 border border-slate-800 hover:border-indigo-500/40 rounded-xl transition group">
+                    <div class="flex items-center space-x-3 truncate"><span class="w-7 h-7 bg-indigo-500/10 text-indigo-400 flex items-center justify-center rounded-lg text-xs font-bold shrink-0">06</span><span class="text-xs font-medium text-gray-200 group-hover:text-white transition truncate">ගුරුत्වාකර්ෂණ ක්ෂේත්‍ර</span></div>
+                    <span class="text-[11px] text-indigo-400 shrink-0 ml-2">➔</span>
+                </a>
+                <a href="physics/electrostatic.php" class="flex items-center justify-between p-3.5 bg-slate-950/40 hover:bg-indigo-600/10 border border-slate-800 hover:border-indigo-500/40 rounded-xl transition group">
+                    <div class="flex items-center space-x-3 truncate"><span class="w-7 h-7 bg-indigo-500/10 text-indigo-400 flex items-center justify-center rounded-lg text-xs font-bold shrink-0">07</span><span class="text-xs font-medium text-gray-200 group-hover:text-white transition truncate">ස්ථිති විද්‍යුත් ක්ෂේත්‍ර</span></div>
+                    <span class="text-[11px] text-indigo-400 shrink-0 ml-2">➔</span>
+                </a>
+                <a href="physics/magnetic.php" class="flex items-center justify-between p-3.5 bg-slate-950/40 hover:bg-indigo-600/10 border border-slate-800 hover:border-indigo-500/40 rounded-xl transition group">
+                    <div class="flex items-center space-x-3 truncate"><span class="w-7 h-7 bg-indigo-500/10 text-indigo-400 flex items-center justify-center rounded-lg text-xs font-bold shrink-0">08</span><span class="text-xs font-medium text-gray-200 group-hover:text-white transition truncate">චුම්බක ක්ෂේත්‍ර</span></div>
+                    <span class="text-[11px] text-indigo-400 shrink-0 ml-2">➔</span>
+                </a>
+                <a href="physics/current-electricity.php" class="flex items-center justify-between p-3.5 bg-slate-950/40 hover:bg-indigo-600/10 border border-slate-800 hover:border-indigo-500/40 rounded-xl transition group">
+                    <div class="flex items-center space-x-3 truncate"><span class="w-7 h-7 bg-indigo-500/10 text-indigo-400 flex items-center justify-center rounded-lg text-xs font-bold shrink-0">09</span><span class="text-xs font-medium text-gray-200 group-hover:text-white transition truncate">ධාරා විද්‍යුතය (Current Electricity)</span></div>
+                    <span class="text-[11px] text-indigo-400 shrink-0 ml-2">➔</span>
+                </a>
+                <a href="physics/electromagnetism.php" class="flex items-center justify-between p-3.5 bg-slate-950/40 hover:bg-indigo-600/10 border border-slate-800 hover:border-indigo-500/40 rounded-xl transition group">
+                    <div class="flex items-center space-x-3 truncate"><span class="w-7 h-7 bg-indigo-500/10 text-indigo-400 flex items-center justify-center rounded-lg text-xs font-bold shrink-0">10</span><span class="text-xs font-medium text-gray-200 group-hover:text-white transition truncate">විද්‍යුත් චුම්බකත්වය</span></div>
+                    <span class="text-[11px] text-indigo-400 shrink-0 ml-2">➔</span>
+                </a>
+                <a href="physics/elasticity.php" class="flex items-center justify-between p-3.5 bg-slate-950/40 hover:bg-indigo-600/10 border border-slate-800 hover:border-indigo-500/40 rounded-xl transition group">
+                    <div class="flex items-center space-x-3 truncate"><span class="w-7 h-7 bg-indigo-500/10 text-indigo-400 flex items-center justify-center rounded-lg text-xs font-bold shrink-0">11</span><span class="text-xs font-medium text-gray-200 group-hover:text-white transition truncate">ප්‍රත්‍යාස්ථතාව (Elasticity)</span></div>
+                    <span class="text-[11px] text-indigo-400 shrink-0 ml-2">➔</span>
+                </a>
+                <a href="physics/viscosity.php" class="flex items-center justify-between p-3.5 bg-slate-950/40 hover:bg-indigo-600/10 border border-slate-800 hover:border-indigo-500/40 rounded-xl transition group">
+                    <div class="flex items-center space-x-3 truncate"><span class="w-7 h-7 bg-indigo-500/10 text-indigo-400 flex items-center justify-center rounded-lg text-xs font-bold shrink-0">12</span><span class="text-xs font-medium text-gray-200 group-hover:text-white transition truncate">දුස්ස්‍රාවිතාව (Viscosity)</span></div>
+                    <span class="text-[11px] text-indigo-400 shrink-0 ml-2">➔</span>
+                </a>
+                <a href="physics/surface-tension.php" class="flex items-center justify-between p-3.5 bg-slate-950/40 hover:bg-indigo-600/10 border border-slate-800 hover:border-indigo-500/40 rounded-xl transition group">
+                    <div class="flex items-center space-x-3 truncate"><span class="w-7 h-7 bg-indigo-500/10 text-indigo-400 flex items-center justify-center rounded-lg text-xs font-bold shrink-0">13</span><span class="text-xs font-medium text-gray-200 group-hover:text-white transition truncate">පෘෂ්ඨික ආතතිය (Surface Tension)</span></div>
+                    <span class="text-[11px] text-indigo-400 shrink-0 ml-2">➔</span>
+                </a>
+                <a href="physics/matter-radiation.php" class="flex items-center justify-between p-3.5 bg-slate-950/40 hover:bg-indigo-600/10 border border-slate-800 hover:border-indigo-500/40 rounded-xl transition group">
+                    <div class="flex items-center space-x-3 truncate"><span class="w-7 h-7 bg-indigo-500/10 text-indigo-400 flex items-center justify-center rounded-lg text-xs font-bold shrink-0">14</span><span class="text-xs font-medium text-gray-200 group-hover:text-white transition truncate">පදාර්ථ හා විකිරණ (Matter & Radiation)</span></div>
+                    <span class="text-[11px] text-indigo-400 shrink-0 ml-2">➔</span>
+                </a>
+                <a href="physics/electronics.php" class="flex items-center justify-between p-3.5 bg-slate-950/40 hover:bg-indigo-600/10 border border-slate-800 hover:border-indigo-500/40 rounded-xl transition group md:col-span-2">
+                    <div class="flex items-center space-x-3 truncate"><span class="w-7 h-7 bg-indigo-500/10 text-indigo-400 flex items-center justify-center rounded-lg text-xs font-bold shrink-0">15</span><span class="text-xs font-medium text-gray-200 group-hover:text-white transition truncate">ඉලෙක්ට්‍රොනික විද්‍යාව (Electronics)</span></div>
+                    <span class="text-[11px] text-indigo-400 shrink-0 ml-2">➔</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div id="chemistry-modal" class="hidden fixed inset-0 w-full h-full bg-slate-950/80 backdrop-blur-sm flex items-center justify-center z-50 px-4">
+        <div class="bg-slate-900 border border-teal-500/30 w-full max-w-2xl rounded-3xl p-6 md:p-8 shadow-2xl relative space-y-6 max-h-[85vh] overflow-y-auto">
+            <div class="flex justify-between items-center border-b border-slate-800 pb-4 sticky top-0 bg-slate-900 z-10">
+                <div>
+                    <h3 class="text-xl font-bold text-white flex items-center gap-2"><span>🧪</span> Chemistry MCQ Arena</h3>
+                    <p class="text-xs text-gray-400 mt-1">ආරම්භ කිරීමට අවශ්‍ය ඒකකය/පාඩම (01 - 14) තෝරාගන්න.</p>
+                </div>
+                <button id="close-chemistry-btn" class="w-8 h-8 bg-slate-800 hover:bg-slate-700 text-gray-400 hover:text-white rounded-full flex items-center justify-center transition">✕</button>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <a href="chemistry/atomic-structure.php" class="flex items-center justify-between p-3.5 bg-slate-950/40 hover:bg-teal-600/10 border border-slate-800 hover:border-teal-500/40 rounded-xl transition group">
+                    <div class="flex items-center space-x-3 truncate"><span class="w-7 h-7 bg-teal-500/10 text-teal-400 flex items-center justify-center rounded-lg text-xs font-bold shrink-0">01</span><span class="text-xs font-medium text-gray-200 group-hover:text-white transition truncate">පරමාණුක ව්‍යුහය (Atomic Structure)</span></div>
+                    <span class="text-[11px] text-teal-400 shrink-0 ml-2">➔</span>
+                </a>
+                <a href="chemistry/bonding.php" class="flex items-center justify-between p-3.5 bg-slate-950/40 hover:bg-teal-600/10 border border-slate-800 hover:border-teal-500/40 rounded-xl transition group">
+                    <div class="flex items-center space-x-3 truncate"><span class="w-7 h-7 bg-teal-500/10 text-teal-400 flex items-center justify-center rounded-lg text-xs font-bold shrink-0">02</span><span class="text-xs font-medium text-gray-200 group-hover:text-white transition truncate">ව්‍යුහය සහ බන්ධන (Structure & Bonding)</span></div>
+                    <span class="text-[11px] text-teal-400 shrink-0 ml-2">➔</span>
+                </a>
+                <a href="chemistry/calculations.php" class="flex items-center justify-between p-3.5 bg-slate-950/40 hover:bg-teal-600/10 border border-slate-800 hover:border-teal-500/40 rounded-xl transition group">
+                    <div class="flex items-center space-x-3 truncate"><span class="w-7 h-7 bg-teal-500/10 text-teal-400 flex items-center justify-center rounded-lg text-xs font-bold shrink-0">03</span><span class="text-xs font-medium text-gray-200 group-hover:text-white transition truncate">රසායනික ගණනය කිරීම් (Calculations)</span></div>
+                    <span class="text-[11px] text-teal-400 shrink-0 ml-2">➔</span>
+                </a>
+                <a href="chemistry/gaseous-state.php" class="flex items-center justify-between p-3.5 bg-slate-950/40 hover:bg-teal-600/10 border border-slate-800 hover:border-teal-500/40 rounded-xl transition group">
+                    <div class="flex items-center space-x-3 truncate"><span class="w-7 h-7 bg-teal-500/10 text-teal-400 flex items-center justify-center rounded-lg text-xs font-bold shrink-0">04</span><span class="text-xs font-medium text-gray-200 group-hover:text-white transition truncate">පදාර්ථයේ වායු අවස්ථාව (Gaseous State)</span></div>
+                    <span class="text-[11px] text-teal-400 shrink-0 ml-2">➔</span>
+                </a>
+                <a href="chemistry/block-chemistry.php" class="flex items-center justify-between p-3.5 bg-slate-950/40 hover:bg-teal-600/10 border border-slate-800 hover:border-teal-500/40 rounded-xl transition group">
+                    <div class="flex items-center space-x-3 truncate"><span class="w-7 h-7 bg-teal-500/10 text-teal-400 flex items-center justify-center rounded-lg text-xs font-bold shrink-0">05</span><span class="text-xs font-medium text-gray-200 group-hover:text-white transition truncate">s, p සහ d ගොනු මූලද්‍රව්‍යවල රසායනය</span></div>
+                    <span class="text-[11px] text-teal-400 shrink-0 ml-2">➔</span>
+                </a>
+                <a href="chemistry/organic-basics.php" class="flex items-center justify-between p-3.5 bg-slate-950/40 hover:bg-teal-600/10 border border-slate-800 hover:border-teal-500/40 rounded-xl transition group">
+                    <div class="flex items-center space-x-3 truncate"><span class="w-7 h-7 bg-teal-500/10 text-teal-400 flex items-center justify-center rounded-lg text-xs font-bold shrink-0">06</span><span class="text-xs font-medium text-gray-200 group-hover:text-white transition truncate">කාබනික රසායනය - මූලික සිද්ධාන්ත</span></div>
+                    <span class="text-[11px] text-teal-400 shrink-0 ml-2">➔</span>
+                </a>
+                <a href="chemistry/hydrocarbons.php" class="flex items-center justify-between p-3.5 bg-slate-950/40 hover:bg-teal-600/10 border border-slate-800 hover:border-teal-500/40 rounded-xl transition group">
+                    <div class="flex items-center space-x-3 truncate"><span class="w-7 h-7 bg-teal-500/10 text-teal-400 flex items-center justify-center rounded-lg text-xs font-bold shrink-0">07</span><span class="text-xs font-medium text-gray-200 group-hover:text-white transition truncate">හයිඩ්‍රොකාබන සහ ඇල්කයිල් හේලයිඩ</span></div>
+                    <span class="text-[11px] text-teal-400 shrink-0 ml-2">➔</span>
+                </a>
+                <a href="chemistry/oxygen-compounds.php" class="flex items-center justify-between p-3.5 bg-slate-950/40 hover:bg-teal-600/10 border border-slate-800 hover:border-teal-500/40 rounded-xl transition group">
+                    <div class="flex items-center space-x-3 truncate"><span class="w-7 h-7 bg-teal-500/10 text-teal-400 flex items-center justify-center rounded-lg text-xs font-bold shrink-0">08</span><span class="text-xs font-medium text-gray-200 group-hover:text-white transition truncate">ඔක්සිජන් අඩංගු කාබනික සංයෝග</span></div>
+                    <span class="text-[11px] text-teal-400 shrink-0 ml-2">➔</span>
+                </a>
+                <a href="chemistry/nitrogen-compounds.php" class="flex items-center justify-between p-3.5 bg-slate-950/40 hover:bg-teal-600/10 border border-slate-800 hover:border-teal-500/40 rounded-xl transition group">
+                    <div class="flex items-center space-x-3 truncate"><span class="w-7 h-7 bg-teal-500/10 text-teal-400 flex items-center justify-center rounded-lg text-xs font-bold shrink-0">09</span><span class="text-xs font-medium text-gray-200 group-hover:text-white transition truncate">නයිට්‍රජන් අඩංගු කාබනික සංයෝග</span></div>
+                    <span class="text-[11px] text-teal-400 shrink-0 ml-2">➔</span>
+                </a>
+                <a href="chemistry/energetics.php" class="flex items-center justify-between p-3.5 bg-slate-950/40 hover:bg-teal-600/10 border border-slate-800 hover:border-teal-500/40 rounded-xl transition group">
+                    <div class="flex items-center space-x-3 truncate"><span class="w-7 h-7 bg-teal-500/10 text-teal-400 flex items-center justify-center rounded-lg text-xs font-bold shrink-0">10</span><span class="text-xs font-medium text-gray-200 group-hover:text-white transition truncate">රසායනික ශක්ති විද්‍යාව (Energetics)</span></div>
+                    <span class="text-[11px] text-teal-400 shrink-0 ml-2">➔</span>
+                </a>
+                <a href="chemistry/equilibrium.php" class="flex items-center justify-between p-3.5 bg-slate-950/40 hover:bg-teal-600/10 border border-slate-800 hover:border-teal-500/40 rounded-xl transition group">
+                    <div class="flex items-center space-x-3 truncate"><span class="w-7 h-7 bg-teal-500/10 text-teal-400 flex items-center justify-center rounded-lg text-xs font-bold shrink-0">11</span><span class="text-xs font-medium text-gray-200 group-hover:text-white transition truncate">රසායනික සමතුලිතතාව (Equilibrium)</span></div>
+                    <span class="text-[11px] text-teal-400 shrink-0 ml-2">➔</span>
+                </a>
+                <a href="chemistry/acid-base.php" class="flex items-center justify-between p-3.5 bg-slate-950/40 hover:bg-teal-600/10 border border-slate-800 hover:border-teal-500/40 rounded-xl transition group">
+                    <div class="flex items-center space-x-3 truncate"><span class="w-7 h-7 bg-teal-500/10 text-teal-400 flex items-center justify-center rounded-lg text-xs font-bold shrink-0">12</span><span class="text-xs font-medium text-gray-200 group-hover:text-white transition truncate">අම්ල-භෂ්ම සමතුලිතතාව (Acid-Base)</span></div>
+                    <span class="text-[11px] text-teal-400 shrink-0 ml-2">➔</span>
+                </a>
+                <a href="chemistry/kinetics-electrochemistry.php" class="flex items-center justify-between p-3.5 bg-slate-950/40 hover:bg-teal-600/10 border border-slate-800 hover:border-teal-500/40 rounded-xl transition group">
+                    <div class="flex items-center space-x-3 truncate"><span class="w-7 h-7 bg-teal-500/10 text-teal-400 flex items-center justify-center rounded-lg text-xs font-bold shrink-0">13</span><span class="text-xs font-medium text-gray-200 group-hover:text-white transition truncate">චාලක රසායනය සහ විද්‍යුත් රසායනය</span></div>
+                    <span class="text-[11px] text-teal-400 shrink-0 ml-2">➔</span>
+                </a>
+                <a href="chemistry/industrial-pollution.php" class="flex items-center justify-between p-3.5 bg-slate-950/40 hover:bg-teal-600/10 border border-slate-800 hover:border-teal-500/40 rounded-xl transition group">
+                    <div class="flex items-center space-x-3 truncate"><span class="w-7 h-7 bg-teal-500/10 text-teal-400 flex items-center justify-center rounded-lg text-xs font-bold shrink-0">14</span><span class="text-xs font-medium text-gray-200 group-hover:text-white transition truncate">කර්මාන්ත රසායනය සහ පරිසර දූෂණය</span></div>
+                    <span class="text-[11px] text-teal-400 shrink-0 ml-2">➔</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <footer class="w-full border-t border-indigo-950/40 bg-slate-950/80 py-4 text-center text-xs text-gray-500 z-10 relative mt-12">
+        &copy; 2026 DSD QUIZ WEB. Powered by A/L Master Stream.
+    </footer>
+
+    <script>
+        // DOM Elements
+        const profileBtn = document.getElementById('profile-btn');
+        const userDropdown = document.getElementById('user-dropdown');
+        const physicsArenaBtn = document.getElementById('physics-arena-btn');
+        const physicsModal = document.getElementById('physics-modal');
+        const closePhysicsBtn = document.getElementById('close-physics-btn');
+        const chemistryArenaBtn = document.getElementById('chemistry-arena-btn');
+        const chemistryModal = document.getElementById('chemistry-modal');
+        const closeChemistryBtn = document.getElementById('close-chemistry-btn');
+
+        // Toggle User Settings Menu
+        profileBtn.addEventListener('click', (e) => { e.stopPropagation(); userDropdown.classList.toggle('hidden'); });
+
+        // Physics Modal Events
+        physicsArenaBtn.addEventListener('click', () => { physicsModal.classList.remove('hidden'); document.body.style.overflow = 'hidden'; });
+        closePhysicsBtn.addEventListener('click', () => { physicsModal.classList.add('hidden'); document.body.style.overflow = 'auto'; });
+
+        // Chemistry Modal Events
+        chemistryArenaBtn.addEventListener('click', () => { chemistryModal.classList.remove('hidden'); document.body.style.overflow = 'hidden'; });
+        closeChemistryBtn.addEventListener('click', () => { chemistryModal.classList.add('hidden'); document.body.style.overflow = 'auto'; });
+
+        // Global Click to close popups
+        window.addEventListener('click', (e) => {
+            if (!userDropdown.contains(e.target) && !profileBtn.contains(e.target)) userDropdown.classList.add('hidden');
+            if (e.target === physicsModal) { physicsModal.classList.add('hidden'); document.body.style.overflow = 'auto'; }
+            if (e.target === chemistryModal) { chemistryModal.classList.add('hidden'); document.body.style.overflow = 'auto'; }
+        });
+
+        // ==================== LIVE REAL-TIME DATA REFRESH LOGIC ====================
+        
+        function updateLeaderboardAndNavbar() {
+            fetch('get_leaderboard.php')
+                .then(response => response.json())
+                .then(data => {
+                    // 1. Render Live Leaderboard Area
+                    const leaderboardList = document.getElementById('leaderboard-list');
+                    let htmlContent = '';
+                    
+                    data.forEach((user, index) => {
+                        const rank = index + 1;
+                        const bgStyle = rank === 1 ? 'bg-amber-500/5 border-amber-500/20' : 'bg-slate-950/40 border-slate-900';
+                        const rankColor = rank === 1 ? 'text-amber-400' : (rank === 2 ? 'text-slate-400' : 'text-orange-600');
+                        
+                        htmlContent += `
+                            <div class="flex items-center justify-between p-3 border rounded-xl ${bgStyle}">
+                                <div class="flex items-center space-x-3">
+                                    <span class="text-xl font-bold w-5 ${rankColor}">${rank}</span>
+                                    <div class="w-8 h-8 bg-slate-800 rounded-full flex items-center justify-center font-bold text-xs">${user.short_name}</div>
+                                    <span class="text-sm font-medium text-gray-200">${user.name}</span>
+                                </div>
+                                <span class="text-xs font-bold ${rank === 1 ? 'text-amber-400' : 'text-slate-300'}">${user.xp} XP</span>
+                            </div>`;
+                    });
+                    leaderboardList.innerHTML = htmlContent;
+
+                    // 2. Render Live Navbar Metrics (Rank & XP)
+                    // ලොග් වී සිටින සිසුවාගේ නම "පසිඳු මධුශංඛ" ලෙස මෙතැනින් දත්ත පෙරන්න පුළුවන්
+                    const currentUser = data.find(user => user.name === "පසිඳු මධුශංඛ") || data[0]; 
+                    const currentRank = data.findIndex(user => user.name === currentUser.name) + 1;
+
+                    if(currentUser) {
+                        document.getElementById('nav-rank').innerText = `🏆 Rank: #${currentRank}`;
+                        document.getElementById('nav-xp').innerText = `✨ ${currentUser.xp} XP`;
+                    }
+                })
+                .catch(err => console.error('Error syncing leaderboard/navbar metrics:', err));
+        }
+
+        function updateRecentQuizzes() {
+            fetch('get_recent_quizzes.php')
+                .then(response => response.json())
+                .then(data => {
+                    const tbody = document.getElementById('recent-quizzes-tbody');
+                    let htmlContent = '';
+                    data.forEach(quiz => {
+                        const subjectColor = quiz.subject.toLowerCase() === 'physics' ? 'text-amber-400' : 'text-teal-400';
+                        const statusBg = quiz.status.toLowerCase() === 'passed' ? 'bg-emerald-500/10 text-emerald-400' : 'bg-rose-500/10 text-rose-400';
+                        htmlContent += `
+                            <tr>
+                                <td class="p-3 font-medium text-white">${quiz.name}</td>
+                                <td class="p-3 ${subjectColor}">${quiz.subject}</td>
+                                <td class="p-3 text-emerald-400 font-bold">${quiz.score}</td>
+                                <td class="p-3"><span class="${statusBg} px-2 py-0.5 rounded text-xs">${quiz.status}</span></td>
+                            </tr>`;
+                    });
+                    tbody.innerHTML = htmlContent;
+                }).catch(err => console.error('Error syncing recent quizzes table:', err));
+        }
+
+        // Initialize immediately and repeat execution every 10 seconds
+        updateLeaderboardAndNavbar(); 
+        updateRecentQuizzes();
+        setInterval(updateLeaderboardAndNavbar, 10000);
+        setInterval(updateRecentQuizzes, 10000);
+    </script>
+</body>
+</html>
